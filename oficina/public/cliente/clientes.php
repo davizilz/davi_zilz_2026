@@ -10,12 +10,12 @@ $resultado = $conexao->query("SELECT * FROM clientes ORDER BY nome");
     <a href="../../principal.php">Voltar</a> |
     <a href="cliente_form.php">Cadastrar cliente</a>
 
-    <?php if (isset($_GET['erro'])) { ?>
-        <p style="color:red;">Não é possível excluir: este cliente possui agendamentos.</p>
-    <?php } ?>
-
-    <?php if (isset($_GET['excluido'])) { ?>
-        <p style="color:green;">Cliente excluído com sucesso.</p>
+    <?php if (isset($_GET['erro']) && $_GET['erro'] === '1') { ?>
+        <p >Não é possível excluir: este cliente possui agendamentos.</p>
+    <?php } elseif (isset($_GET['erro'])) { ?>
+        <p >Não foi possível excluir o cliente.</p>
+    <?php } elseif (isset($_GET['excluido'])) { ?>
+        <p >Cliente excluído com sucesso.</p>
     <?php } ?>
 
     <table border="1" cellpadding="5">

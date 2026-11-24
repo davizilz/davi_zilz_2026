@@ -1,7 +1,6 @@
 <?php
 include __DIR__ . '/../../verifica.php';
 
-// Do agendamento mais próximo para o mais distante
 $sql = "SELECT a.id, a.placa,
                DATE_FORMAT(a.data_hora, '%d/%m/%Y %H:%i') AS data_formatada,
                c.nome AS cliente, m.nome AS mecanico, m.especialidade
@@ -18,6 +17,12 @@ $resultado = $conexao->query($sql);
     <h1>Agendamentos</h1>
     <a href="../../principal.php">Voltar</a> |
     <a href="agendamento_form.php">Cadastrar agendamento</a>
+
+    <?php if (isset($_GET['excluido'])) { ?>
+        <p>Agendamento excluído com sucesso.</p>
+    <?php } elseif (isset($_GET['erro'])) { ?>
+        <p>Não foi possível excluir o agendamento.</p>
+    <?php } ?>
 
     <table border="1" cellpadding="5">
         <tr>

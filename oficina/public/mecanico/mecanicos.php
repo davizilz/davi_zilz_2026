@@ -10,8 +10,12 @@ $resultado = $conexao->query("SELECT * FROM mecanicos ORDER BY nome");
     <a href="../../principal.php">Voltar</a> |
     <a href="mecanico_form.php">Cadastrar mecânico</a>
 
-    <?php if (isset($_GET['erro'])) { ?>
-        <p style="color:red;">Não é possível excluir: este mecânico possui agendamentos.</p>
+    <?php if (isset($_GET['erro']) && $_GET['erro'] === '1') { ?>
+        <p>Não é possível excluir: este mecânico possui agendamentos.</p>
+    <?php } elseif (isset($_GET['erro'])) { ?>
+        <p>Não foi possível excluir o mecânico.</p>
+    <?php } elseif (isset($_GET['excluido'])) { ?>
+        <p>Mecânico excluído com sucesso.</p>
     <?php } ?>
 
     <table border="1" cellpadding="5">

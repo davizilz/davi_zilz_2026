@@ -8,7 +8,6 @@ if ($id <= 0) {
     exit;
 }
 
-// Confere se o cliente possui agendamentos
 $stmt = $conexao->prepare("SELECT COUNT(*) AS total FROM agendamentos WHERE cliente_id = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
@@ -21,7 +20,10 @@ if ($total > 0) {
 
 $stmt = $conexao->prepare("DELETE FROM clientes WHERE id = ?");
 $stmt->bind_param("i", $id);
-$stmt->execute();
 
-header("Location: clientes.php?excluido=1");
+if ($stmt->execute() && $conexao->affected_rows > 0) {
+    header("Location: clientes.php?excluido=1");
+} else {
+    header("Location: clientes.php?erro=excluir");
+}
 exit;
