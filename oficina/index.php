@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "conexao.php";
+include __DIR__ . '/infra/conexao.php';
 
 $erro = "";
 

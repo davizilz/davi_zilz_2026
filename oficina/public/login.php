@@ -1,6 +1,6 @@
 <?php
 session_start();
-include __DIR__ . '/../conexao.php';
+include __DIR__ . '/../infra/conexao.php';
 
 $erro = "";
 
@@ -15,7 +15,6 @@ if (isset($_GET['cadastro'])) {
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $usuario = trim($_POST['usuario']);
     $senha = $_POST['senha'];
-
     $stmt = $conexao->prepare("SELECT id, nome, senha FROM usuarios WHERE usuario = ?");
     $stmt->bind_param("s", $usuario);
     $stmt->execute();
