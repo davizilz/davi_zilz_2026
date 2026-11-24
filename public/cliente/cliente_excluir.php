@@ -1,12 +1,18 @@
 <?php
-include "verifica.php";
-$id = (int) $_GET['id'];
+include __DIR__ . '/../../verifica.php';
 
-// Confere se o cliente tem agendamentos
+$id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+
+if ($id <= 0) {
+    header("Location: clientes.php");
+    exit;
+}
+
+// Confere se o cliente possui agendamentos
 $stmt = $conexao->prepare("SELECT COUNT(*) AS total FROM agendamentos WHERE cliente_id = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
-$total = $stmt->get_result()->fetch_assoc()['total'];
+$total = (int) $stmt->get_result()->fetch_assoc()['total'];
 
 if ($total > 0) {
     header("Location: clientes.php?erro=1");
@@ -16,5 +22,6 @@ if ($total > 0) {
 $stmt = $conexao->prepare("DELETE FROM clientes WHERE id = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
-header("Location: clientes.php");
+
+header("Location: clientes.php?excluido=1");
 exit;

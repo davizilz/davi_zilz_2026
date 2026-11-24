@@ -1,5 +1,5 @@
 <?php
-include "verifica.php";
+include __DIR__ . '/../../verifica.php';
 $resultado = $conexao->query("SELECT * FROM clientes ORDER BY nome");
 ?>
 <!DOCTYPE html>
@@ -7,11 +7,15 @@ $resultado = $conexao->query("SELECT * FROM clientes ORDER BY nome");
 <head><meta charset="UTF-8"><title>Clientes</title></head>
 <body>
     <h1>Clientes</h1>
-    <a href="principal.php">Voltar</a> |
+    <a href="../../principal.php">Voltar</a> |
     <a href="cliente_form.php">Cadastrar cliente</a>
 
     <?php if (isset($_GET['erro'])) { ?>
         <p style="color:red;">Não é possível excluir: este cliente possui agendamentos.</p>
+    <?php } ?>
+
+    <?php if (isset($_GET['excluido'])) { ?>
+        <p style="color:green;">Cliente excluído com sucesso.</p>
     <?php } ?>
 
     <table border="1" cellpadding="5">

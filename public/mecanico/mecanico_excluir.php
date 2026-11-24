@@ -1,5 +1,5 @@
 <?php
-include "verifica.php";
+include __DIR__ . '/../../verifica.php';
 $id = (int) $_GET['id'];
 
 $stmt = $conexao->prepare("SELECT COUNT(*) AS total FROM agendamentos WHERE mecanico_id = ?");

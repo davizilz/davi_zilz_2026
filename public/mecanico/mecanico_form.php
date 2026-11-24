@@ -1,5 +1,5 @@
 <?php
-include "verifica.php";
+include __DIR__ . '/../../verifica.php';
 
 $id = 0;
 $nome = "";
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $matricula = $_POST['matricula'];
     $especialidade = $_POST['especialidade'];
 
-    // Matrícula não pode repetir
+  
     $stmt = $conexao->prepare("SELECT COUNT(*) AS total FROM mecanicos WHERE matricula = ? AND id <> ?");
     $stmt->bind_param("si", $matricula, $id);
     $stmt->execute();

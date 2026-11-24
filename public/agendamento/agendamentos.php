@@ -1,5 +1,5 @@
 <?php
-include "verifica.php";
+include __DIR__ . '/../../verifica.php';
 
 // Do agendamento mais próximo para o mais distante
 $sql = "SELECT a.id, a.placa,
@@ -16,7 +16,7 @@ $resultado = $conexao->query($sql);
 <head><meta charset="UTF-8"><title>Agendamentos</title></head>
 <body>
     <h1>Agendamentos</h1>
-    <a href="principal.php">Voltar</a> |
+    <a href="/davi_zilz_2026/principal.php">Voltar</a> |
     <a href="agendamento_form.php">Cadastrar agendamento</a>
 
     <table border="1" cellpadding="5">

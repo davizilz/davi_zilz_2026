@@ -1,5 +1,5 @@
 <?php
-include "verifica.php";
+include __DIR__ . '/../../verifica.php';
 
 $id = 0;
 $cliente_id = 0;

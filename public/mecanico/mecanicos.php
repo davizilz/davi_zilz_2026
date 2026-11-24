@@ -1,5 +1,5 @@
 <?php
-include "verifica.php";
+include __DIR__ . '/../../verifica.php';
 $resultado = $conexao->query("SELECT * FROM mecanicos ORDER BY nome");
 ?>
 <!DOCTYPE html>
@@ -7,7 +7,7 @@ $resultado = $conexao->query("SELECT * FROM mecanicos ORDER BY nome");
 <head><meta charset="UTF-8"><title>Mecânicos</title></head>
 <body>
     <h1>Mecânicos</h1>
-    <a href="principal.php">Voltar</a> |
+    <a href="../../principal.php">Voltar</a> |
     <a href="mecanico_form.php">Cadastrar mecânico</a>
 
     <?php if (isset($_GET['erro'])) { ?>
